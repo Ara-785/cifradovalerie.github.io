@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cajero Automático</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Cajero Automático</h2>
+    <div class="login">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" placeholder="Ingrese su usuario">
+        <label for="pin">PIN:</label>
+        <input type="password" id="pin" placeholder="Ingrese su PIN">
+        <button onclick="validateUser ()">Validar</button>
+    </div>
+
+    <div class="operations" id="operations" style="display:none;">
+        <h3>Operaciones</h3>
+        <button onclick="checkBalance()">Consultar Saldo</button>
+        <button onclick="withdraw()">Retirar</button>
+        <button onclick="deposit()">Consignar</button>
+        <p id="message"></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
