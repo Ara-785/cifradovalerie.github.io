@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cajero Automático</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Cajero Automático</h2>
+    <div>
+        <label for="username">Usuario:</label>
+        <input type="text" id="username">
+        <label for="pin">PIN:</label>
+        <input type="password" id="pin">
+        <button onclick="validateUser ()">Validar</button>
+    </div>
+
+    <div id="operations" style="display:none;">
+        <h3>Operaciones</h3>
+        <button onclick="checkBalance()">Consultar Saldo</button>
+        <button onclick="withdraw()">Retirar</button>
+        <button onclick="deposit()">Consignar</button>
+        <p id="message"></p>
+    </div>
+</div>
+
+<script>
+    let balance = 1000; // Saldo inicial
+    let isAuthenticated = false;
+
+    function validateUser () {
+        const username = document.getElementById('username').value;
+        const pin = document.getElementById('pin').value;
+
+        // Validar usuario (esto es solo un ejemplo)
+        if (username === "usuario" && pin === "1234") {
+            isAuthenticated = true;
+            document.getElementById('operations').style.display = 'block';
+            document.getElementById('message').innerText = "Bienvenido " + username;
+        } else {
+            alert("Usuario o PIN incorrecto");
+        }
+    }
+
+    function checkBalance() {
+        document.getElementById('message').innerText = "Saldo actual: $" + balance;
+    }
+
+    function withdraw() {
+        const amount = prompt("Ingrese el monto a retirar:");
+        if (amount > balance) {
+            alert("No hay suficiente saldo.");
+        } else {
+            balance -= amount;
+            document.getElementById('message').innerText = "Retiro exitoso. Saldo actual: $" + balance;
+        }
+    }
+
+    function deposit() {
+        const amount = prompt("Ingrese el monto a consignar:");
+        balance += parseFloat(amount);
+        document.getElementById('message').innerText = "Consignación exitosa. Saldo actual: $" + balance;
+    }
+</script>
+
+</body>
+</html>
